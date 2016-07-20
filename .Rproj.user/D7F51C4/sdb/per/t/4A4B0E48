@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\n\nshinyUI(navbarPage(\n        title = 'International Logistics Performance Index',\n        tabPanel('Global Ranking'),\n        tabPanel('Country Score Card'),\n        tabPanel('Background', includeHTML(\"include.html\")\n        )\n))\n\n",
+    "created" : 1468980148312.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3286788351",
+    "id" : "4A4B0E48",
+    "lastKnownWriteTime" : 1468987015,
+    "last_content_update" : 1468987015333,
+    "path" : "~/Desktop/Personal/Academia/LPI Rankings/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

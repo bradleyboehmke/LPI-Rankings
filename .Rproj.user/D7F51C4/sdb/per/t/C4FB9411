@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\n\nshinyServer(function(input, output) {\n})",
+    "created" : 1468980022702.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "124680150",
+    "id" : "C4FB9411",
+    "lastKnownWriteTime" : 1468982885,
+    "last_content_update" : 1468982885109,
+    "path" : "~/Desktop/Personal/Academia/LPI Rankings/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
