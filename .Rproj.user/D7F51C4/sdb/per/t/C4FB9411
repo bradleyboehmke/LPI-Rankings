@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "library(shiny)\n\nshinyServer(function(input, output) {\n})",
+    "contents" : "library(shiny)\nlibrary(googleVis)\nlibrary(readr)\nlibrary(stringr)\n\nlpi <- readRDS(\"data/lpi.rds\")\n# clean up non-UTF-8 characters\n#str_detect(lpi$Country, \"voire\") %>% which(.)\nlpi$Country[c(109, 238, 389, 565)] <- \"Cote d Ivoire\"\n\n#str_detect(lpi$Country, \"Tom\") %>% which(.)\nlpi$Country[c(269, 394, 603)] <- \"Sco Tomi and Principe\"\n\n\nshinyServer(function(input, output) {\n        \n        output$text1 <- renderText({ \n                \"You have selected this\"\n        })\n        \n        output$map <- renderPlot({ \n                \n                Geo <- gvisGeoChart(lpi, locationvar=\"Country\", \n                                    colorvar=\"Overall LPI Score\",\n                                    options=list(width=\"1000px\", height=\"500px\"),\n                )\n                plot(Geo)\n        })\n        \n})",
     "created" : 1468980022702.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "124680150",
+    "hash" : "4038095517",
     "id" : "C4FB9411",
-    "lastKnownWriteTime" : 1468982885,
-    "last_content_update" : 1468982885109,
+    "lastKnownWriteTime" : 1469072596,
+    "last_content_update" : 1469072596801,
     "path" : "~/Desktop/Personal/Academia/LPI Rankings/server.R",
     "project_path" : "server.R",
     "properties" : {

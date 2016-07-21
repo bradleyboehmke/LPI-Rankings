@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "shinyUI(fluidPage(\n        titlePanel(\"Logistics Performance Index\"),\n        sidebarLayout(\n                sidebarPanel(\n                        h2(\"How to use this app\"),\n                        p(\"Shiny is available on CRAN, so you can install it in the usual way from your R console:\"),\n                        code('install.packages(\"shiny\")')\n                ),\n                \n                mainPanel(\n                        p(a(\"The Logistics Performance Index (LPI)\", href = \"http://lpi.worldbank.org/\"),\n                          \" is a benchmarking tool created to assess and compare the performance of 160 countries on trade logistics.  The LPI is based on a worldwide survey of operators on the ground (global freight forwarders and express carriers), providing feedback on the logistics “friendliness” of the countries in which they operate and those with which they trade. They combine in-depth knowledge of the countries in which they operate with informed qualitative assessments of other countries where they trade and experience of global logistics environment. Feedback from operators is supplemented with quantitative data on the performance of key components of the logistics chain in the country of work.\"),\n                        br(),\n                        p(\"The LPI consists therefore of both qualitative and quantitative measures and helps build profiles of logistics friendliness for these countries. It measures performance along the logistics supply chain within a country and offers two different perspectives: international and domestic.\"),\n                        br(),\n                        h4(\"International LPI\"),\n                        p(\"Provides qualitative evaluations of a country in six areas by its trading partners—logistics professionals working outside the country.\"),\n                        h4(\"Domestic LPI\"),\n                        p(\"Provides both qualitative and quantitative assessments of a country by logistics professionals working inside it. It includes detailed information on the logistics environment, core logistics processes, institutions, and performance time and cost data.\"),\n                        br(),\n                        p(em(\"You can find more information regarding the LPI methodology\", \n                             a(\"here\", href = \"https://wb-lpi-media.s3.amazonaws.com/LPI%20Methodology.pdf\")))\n                )\n                \n        )\n))",
+    "contents" : "install.packages(\"googleVis\")\nlibrary(googleVis)\n\n\nGeo <- gvisGeoChart(lpi, locationvar=\"Country\", \n                 colorvar=\"Overall LPI Score\",\n                 options=list(width=\"1000px\", height=\"500px\"),\n                 )\nplot(Geo)\n\n\n",
     "created" : 1468985203928.000,
     "dirty" : true,
     "encoding" : "",
     "folds" : "",
-    "hash" : "4148837437",
+    "hash" : "1649256412",
     "id" : "F0A47F08",
     "lastKnownWriteTime" : 1468984894,
-    "last_content_update" : 1468985205978,
+    "last_content_update" : 1469072574732,
     "path" : null,
     "project_path" : null,
     "properties" : {

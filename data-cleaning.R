@@ -31,5 +31,6 @@ for(i in raw_files){
 
 rm(raw_files, i, lpi_raw_2010, lpi_raw_2012, lpi_raw_2014, lpi_raw_2016)
 
+
 write.csv(lpi, "data/lpi.csv", row.names = FALSE)
 
