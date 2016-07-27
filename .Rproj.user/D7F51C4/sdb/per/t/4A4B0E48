@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "library(shiny)\nlibrary(DT)\n\nshinyUI(navbarPage(\n        title = 'International Logistics Performance Index',\n        \n        tabPanel('Global Ranking',\n                 sidebarLayout(\n                         sidebarPanel(\n                                 helpText(\"Modify the map and data table by selecting desired information below.\"),\n                                         \n                                 selectInput(\"var\", label = \"Choose a metric to display\",\n                                                    choices = list(\"Overall LPI Score\", \"Customs\", \"Infrastructure\", \"International Shipments\", \"Logistics Quality & Competence\", \"Tracking & Tracing\", \"Timeliness\"),\n                                                    selected = \"Overall LPI Score\"),\n                                         \n                                 sliderInput(\"range\", \"Year:\",\n                                             min = 2010, max = 2016, value = 2010, step = 2,\n                                             format=\"####\", sep=\"\", animate=TRUE)\n                         ),\n                         mainPanel(\n                                 plotOutput(\"map\")\n                         )\n                 )),\n        \n        tabPanel('Country Score Card'),\n        \n        tabPanel('Background', \n                 includeHTML(\"include.html\")\n        )\n))\n\n",
+    "contents" : "library(shiny)\nlibrary(plotly)\nlibrary(readr)\n\nlpi <- read_csv(\"data/lpi.csv\")\n\nshinyUI(navbarPage(\n        title = 'International Logistics Performance Index',\n        \n                tabPanel('Global Ranking',\n                titlePanel(NULL),\n                sidebarPanel(\n                        helpText(\"Modify the map and data table by selecting desired information below.\"),\n                        \n                        selectInput(\"var\", label = \"Choose a metric to display\",\n                                    choices = list(\"Overall LPI Score\", \"Customs\", \"Infrastructure\", \"International Shipments\", \"Logistics Quality & Competence\", \"Tracking & Tracing\", \"Timeliness\"),\n                                    selected = \"Overall LPI Score\"),\n                        \n                        sliderInput(\"range\", \"Year:\",\n                                    min = 2010, max = 2016, value = 2010, step = 2,\n                                    format=\"####\", sep=\"\", animate=TRUE)\n                ),\n                mainPanel(\n                plotlyOutput(\"trendPlot\")\n                )),\n        \n        tabPanel('Country Score Card'),\n        \n        tabPanel('Background')\n        \n))\n\n",
     "created" : 1468980148312.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2819489266",
+    "hash" : "1319657909",
     "id" : "4A4B0E48",
-    "lastKnownWriteTime" : 1469072488,
-    "last_content_update" : 1469072488151,
+    "lastKnownWriteTime" : 1469564507,
+    "last_content_update" : 1469564507858,
     "path" : "~/Desktop/Personal/Academia/LPI Rankings/ui.R",
     "project_path" : "ui.R",
     "properties" : {

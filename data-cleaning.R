@@ -1,6 +1,7 @@
 library(gdata)
 library(dplyr)
 library(magrittr)
+library(stringr)
 
 # import LPI raw data
 # excluded 2007 because of different variables tracked
@@ -18,19 +19,31 @@ lpi <- data.frame(NULL)
 
 for(i in raw_files){
         
-        i <- get(i) %>%
+        j <- get(i)
+        names(j)[2] <- "Code"
+        
+        j <- j %>%
                 .[-1, ] %>%
                 select(-contains("x.")) %>%
-                set_colnames(c("Country", "Overall LPI Score", "Overall LPI Rank",
+                set_colnames(c("Country", "Code", "Overall LPI Score", "Overall LPI Rank",
                                "Customs", "Infrastructure", "International Shipments", 
                                "Logistics Quality & Competence", "Tracking & Tracing",
                                "Timeliness", "Year"))
         
-        lpi <- rbind(lpi, i)
+        lpi <- rbind(lpi, j)
 }
 
-rm(raw_files, i, lpi_raw_2010, lpi_raw_2012, lpi_raw_2014, lpi_raw_2016)
+rm(raw_files, i, j, lpi_raw_2010, lpi_raw_2012, lpi_raw_2014, lpi_raw_2016)
 
+
+# clean up non-UTF-8 characters
+lpi$Country <- as.character(lpi$Country)
+
+#str_detect(lpi$Country, "voire") %>% which(.)
+lpi$Country[c(109, 238, 389, 565)] <- "Cote d Ivoire"
+
+#str_detect(lpi$Country, "Tom") %>% which(.)
+lpi$Country[c(269, 394, 603)] <- "Sco Tomi and Principe"
 
 write.csv(lpi, "data/lpi.csv", row.names = FALSE)
-
+saveRDS(lpi, file = "data/lpi.rds")

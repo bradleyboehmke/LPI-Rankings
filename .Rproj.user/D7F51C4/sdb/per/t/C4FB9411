@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "library(shiny)\nlibrary(googleVis)\nlibrary(readr)\nlibrary(stringr)\n\nlpi <- readRDS(\"data/lpi.rds\")\n# clean up non-UTF-8 characters\n#str_detect(lpi$Country, \"voire\") %>% which(.)\nlpi$Country[c(109, 238, 389, 565)] <- \"Cote d Ivoire\"\n\n#str_detect(lpi$Country, \"Tom\") %>% which(.)\nlpi$Country[c(269, 394, 603)] <- \"Sco Tomi and Principe\"\n\n\nshinyServer(function(input, output) {\n        \n        output$text1 <- renderText({ \n                \"You have selected this\"\n        })\n        \n        output$map <- renderPlot({ \n                \n                Geo <- gvisGeoChart(lpi, locationvar=\"Country\", \n                                    colorvar=\"Overall LPI Score\",\n                                    options=list(width=\"1000px\", height=\"500px\"),\n                )\n                plot(Geo)\n        })\n        \n})",
+    "contents" : "library(readr)\n\nlpi <- read_csv(\"data/lpi.csv\")\n\nshinyServer(function(input, output) {\n        \n        output$trendPlot <- renderPlotly({\n                l <- list(color = toRGB(\"grey\"), width = 0.5)\n                \n                # specify map projection/options\n                g <- list(\n                        showframe = FALSE,\n                        showcoastlines = FALSE,\n                        projection = list(type = 'Mercator')\n                )\n                \n                plot_ly(lpi, z = `Overall LPI Score`, text = Country, locations = Code, type = 'choropleth',\n                        color = `Overall LPI Score`, colors = 'Blues', marker = list(line = l),\n                        colorbar = list(title = 'LPI Score')) %>%\n                        layout(title = 'Global Logistics Performance Index',\n                               geo = g)\n        })\n})",
     "created" : 1468980022702.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "4038095517",
+    "hash" : "1979250055",
     "id" : "C4FB9411",
-    "lastKnownWriteTime" : 1469072596,
-    "last_content_update" : 1469072596801,
+    "lastKnownWriteTime" : 1469564506,
+    "last_content_update" : 1469564506721,
     "path" : "~/Desktop/Personal/Academia/LPI Rankings/server.R",
     "project_path" : "server.R",
     "properties" : {
