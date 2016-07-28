@@ -1,3 +1,8 @@
+# This file is used to obtain the data and clean it up to create tidy data
+# for analysis and visualization
+
+
+
 library(gdata)
 library(dplyr)
 library(magrittr)
@@ -39,11 +44,19 @@ rm(raw_files, i, j, lpi_raw_2010, lpi_raw_2012, lpi_raw_2014, lpi_raw_2016)
 # clean up non-UTF-8 characters
 lpi$Country <- as.character(lpi$Country)
 
-#str_detect(lpi$Country, "voire") %>% which(.)
 lpi$Country[c(109, 238, 389, 565)] <- "Cote d Ivoire"
-
-#str_detect(lpi$Country, "Tom") %>% which(.)
 lpi$Country[c(269, 394, 603)] <- "Sco Tomi and Principe"
+lpi$Country[lpi$Country == "Congo, Dem, Rep,"] <- "Congo, Dem. Rep."
+lpi$Country[lpi$Country == "Congo, Rep,"] <- "Congo, Rep."
+lpi$Country[lpi$Country == "Egypt, Arab Rep,"] <- "Egypt, Arab Rep."
+lpi$Country[lpi$Country == "Hong Kong SAR, China"] <- "Hong Kong China"
+lpi$Country[lpi$Country == "Hong Kong, China"] <- "Hong Kong China"
+lpi$Country[lpi$Country == "Iran, Islamic Rep,"] <- "Iran, Islamic Rep."
+lpi$Country[lpi$Country == "Korea, Rep,"] <- "Korea Rep."
+lpi$Country[lpi$Country == "Korea Rep."] <- "Korea, Rep."
+lpi$Country[lpi$Country == "Taiwan, China"] <- "Taiwan"
+
+
 
 write.csv(lpi, "data/lpi.csv", row.names = FALSE)
 saveRDS(lpi, file = "data/lpi.rds")

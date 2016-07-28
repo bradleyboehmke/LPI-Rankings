@@ -1,3 +1,6 @@
+# This file was used to assess possible options for the map and to create a
+# prototype code to produce the data table underneath the map
+
 install.packages("googleVis")
 library(googleVis)
 
@@ -13,7 +16,7 @@ lpi$Country[c(269, 394, 603)] <- "Sco Tomi and Principe"
 
 Geo <- gvisGeoChart(lpi, locationvar="Country", 
                  colorvar="Overall LPI Score",
-                 options=list(width="1000px", height="500px"),
+                 options=list(width="1000px", height="500px")
                  )
 plot(Geo)
 
@@ -49,6 +52,25 @@ plot_ly(lpi, z = `Overall LPI Score`, text = Country, locations = Code, type = '
 ###########
 library(leaflet)
 
-m <- leaflet() %>%
-        addTiles() %>%
+leaflet(lpi) %>%
+        addTiles()
+
+
+
+###############################
+# create table on mapping tab #
+###############################        
+metric <- "Overall LPI Score"
+year <- 2016
+
+map_table <- lpi %>%
+        select(-Code) %>%
+        gather(Metric, Score, -Country, -Year) %>%
+        filter(Metric == metric & Year == year) %>%
+        arrange(desc(Score)) %>%
+        mutate(Rank = seq(1, length(Country), by = 1)) %>%
+        select(-Year)
+        
+        
+        
         
